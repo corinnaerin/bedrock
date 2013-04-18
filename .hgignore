@@ -1,0 +1,7 @@
+syntax: glob
+.settings/com.aptana.editor.php.prefs
+.project
+.jshintrc
+.gitignore
+.gitattributes
+.editorconfig

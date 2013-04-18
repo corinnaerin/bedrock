@@ -1,0 +1,15 @@
+/* Will be compiled down to a single stylesheet with your sass files */
+
+thead td {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+tbody td {
+    text-align: center;
+}
+
+input {
+    width: 150px;
+}
