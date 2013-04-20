@@ -1,5 +1,5 @@
 [
-    {"name": "Networking For Everyone", "price": 89},
+    {"name": "Networking for Everyone", "price": 89},
     {"name": "SALES - Referrals", "price": 89},
     {"name": "SALES - Alliances", "price": 89},
     {"name": "SALES - Cold Calling", "price": 89},
@@ -9,6 +9,6 @@
     {"name": "Home Theater", "price": 149},
     {"name": "Lighting Control", "price": 149},
     {"name": "Security and Access", "price": 149},
-    {"name": "PM course and download", "price": 199},
-    {"name": "PM course", "price": 149}
+    {"name": "PM Course & Download", "price": 199},
+    {"name": "PM Course", "price": 149}
 ]
