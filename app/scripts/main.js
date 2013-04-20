@@ -21,7 +21,7 @@ angular.module('bedrock', ['bedrockServices']);
 
 function BedrockOrderCtrl($scope, Courses, Downloads) {
     $scope.courseOptions = Courses.query();
-    $scope.maxCourses = 10;
+    $scope.maxCourses = 50;
     $scope.minCourses = 1;
     
     var emptyCourse = {course: '', company: '', city: '', state: ''};
