@@ -11,7 +11,6 @@
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/select2.css">
         <link rel="stylesheet" href="components/jquery-ui/themes/ui-lightness/jquery-ui.min.css">
-        <script src="scripts/vendor/modernizr.min.js"></script>
         <!--[if lte IE 8]>
         <script src="scripts/vendor/json2.js"></script>
         <![endif]-->
@@ -134,7 +133,7 @@
                 <div>Each course is assigned to one individual who earns a <i>Certificate of Completion</i> upon passing the course test.</div>
                
                 
-                <table style="width:100%;" id="courses" class="table table-striped table-hover table-condensed">
+                <table style="width:100%;" class="table table-striped table-hover table-condensed">
                     <thead>
                         <tr>
                             <td style="width:25%;">Course Name</td>
@@ -152,11 +151,11 @@
                             </td>
                             <td>{{course.course.price | price}}</td>
                             <td ng-form="studentNameForm">
-                                <input type="text" ng-model="studentName" name="studentName" required-if-course>
+                                <input type="text" ng-model="course.studentName" name="studentName" required-if-course>
                                 <div ng-show="studentNameForm.studentName.$dirty && studentNameForm.studentName.$invalid">This field is required</div>
                             </td>
                             <td ng-form="emailForm">
-                                <input type="email" ng-model="studentEmail" name="studentEmail" required-if-course>
+                                <input type="email" ng-model="course.studentEmail" name="studentEmail" required-if-course>
                                 <div ng-show="emailForm.studentEmail.$dirty && emailForm.studentEmail.$invalid">
                                     <span ng-show="emailForm.studentEmail.$error.required">This field is required</span>
                                     <span ng-show="emailForm.studentEmail.$error.email">Please enter a valid e-mail address</span>
@@ -228,10 +227,33 @@
                 
                 <div style="text-align:center;margin-top:15px;">
                     <b>TOTAL ORDER:</b> {{totalCoursePrice() + totalDownloadPrice() | price}}&nbsp;&nbsp;
-                    <button type="button" class="btn btn-warning" ng-disabled="form.$invalid">Submit Order</button>
+                    <button type="button" class="btn btn-warning" ng-disabled="form.$invalid" ng-click="submitOrder();">Submit Order</button>
                 </div>
+                <h4 style="text-align:center;">{{response}}</h2>
             </div>
         </form>
+        <div id="messageDiv">
+            Date: {{date}}<br>
+            Distributor: {{distributor}}<br>
+            PO #: {{po}}<br>
+            Order Placed By: {{orderPlacedBy}}<br>
+            Company: {{company}}<br>
+            City: {{city}}<br>
+            State/Province: {{state}}<br><br>
+            Courses:
+            <div ng-repeat="course in courses">
+                <div ui-if="course.course">{{course.course.name}}, {{course.studentName}}, {{course.studentEmail}}</div>
+            </div>
+            <br>
+            Downloads:
+            <div ng-repeat="download in downloads">
+                <div ui-if="download.include">{{download.name}}</div>
+            </div>
+            <br>
+            Send download link to: {{downloadName}} at {{downloadEmail}}
+            <br><br>
+            Grand Total: {{totalCoursePrice() + totalDownloadPrice() | price}}
+        </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
         <script src="scripts/vendor/select2.min.js"></script>
@@ -240,6 +262,7 @@
         <script src="components/angular-ui/common/module.js"></script>
         <script src="components/angular-ui/modules/directives/select2/select2.js"></script>
         <script src="components/angular-ui/modules/directives/date/date.js"></script>
+        <script src="components/angular-ui/modules/directives/if/if.js"></script>
         <script src="scripts/main.js"></script>
     </body>
 </html>
