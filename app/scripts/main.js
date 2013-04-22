@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bedrockServices', ['ngResource', 'ui']).
+angular.module('bedrock', ['ngResource', 'ui']).
     factory('Courses', function($resource){
         return $resource('courses.json', {}, {
             query: {method:'GET', isArray:true}
@@ -54,8 +54,6 @@ angular.module('bedrockServices', ['ngResource', 'ui']).
             }
         }
     });
-
-angular.module('bedrock', ['bedrockServices']);
 
 function BedrockOrderCtrl($scope, $http, Courses, Downloads) {
     $scope.courseOptions = Courses.query();

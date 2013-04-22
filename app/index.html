@@ -46,7 +46,7 @@ function FP_getObjectByID(id,o) {//v1.0
 <meta name="Microsoft Border" content="tlb, default">
 </head>
 
-<body onload="FP_preloadImgs(/*url*/'../images/test-nav/catalog-over.jpg',/*url*/'../images/test-nav/studentlogin-over.jpg',/*url*/'../images/test-nav/samplecourse-over.jpg',/*url*/'../images/test-nav/resources-over.jpg',/*url*/'../images/test-nav/certification-over.jpg',/*url*/'../images/test-nav/faq-over.jpg',/*url*/'../images/test-nav/mailinglist-over.jpg',/*url*/'../images/test-nav/blog-over.jpg')" id="ng-app" ng-app="bedrock" ng-controller="BedrockOrderCtrl"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<body onload="FP_preloadImgs(/*url*/'../images/test-nav/catalog-over.jpg',/*url*/'../images/test-nav/studentlogin-over.jpg',/*url*/'../images/test-nav/samplecourse-over.jpg',/*url*/'../images/test-nav/resources-over.jpg',/*url*/'../images/test-nav/certification-over.jpg',/*url*/'../images/test-nav/faq-over.jpg',/*url*/'../images/test-nav/mailinglist-over.jpg',/*url*/'../images/test-nav/blog-over.jpg')" id="ng-app" ng-controller="BedrockOrderCtrl"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
 <div align="left">
 	<table border="0" width="100%" cellspacing="0" cellpadding="0" style="background-color: #923031;">
 		<tr>
@@ -154,34 +154,34 @@ function FP_getObjectByID(id,o) {//v1.0
                 <table id="headerInfo">
                     <tr>
                         <td colspan="4">&nbsp;</td>
-                        <td>Date:</td>
+                        <td>Date</td>
                         <td>
                             <input type="text" name="date" ui-date ng-model="date" class="input-medium" required>
                             <div ng-show="form.date.$dirty && form.date.$invalid">This field is required</div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Distributor:</td>
+                        <td>Distributor</td>
                         <td>
                             <input type="text" ng-model="distributor" name="distributor" class="input-medium" required>
                             <div ng-show="form.distributor.$dirty && form.distributor.$invalid">This field is required</div>
                         </td>
-                        <td>PO #:</td>
+                        <td>PO #</td>
                         <td>
                             <input type="text" ng-model="po" name="po" class="input-medium" required>
                             <div ng-show="form.po.$dirty && form.po.$invalid">This field is required</div>
                         </td>
-                        <td>Order Placed By:</td>
+                        <td>Order Placed By</td>
                         <td>
                             <input type="text" ng-model="orderPlacedBy" name="orderPlacedBy" class="input-medium" required>
                             <div ng-show="form.orderPlacedBy.$dirty && form.orderPlacedBy.$invalid">This field is required</div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Company:</td>
+                        <td>Customer</td>
                         <td>
-                            <input type="text" ng-model="company" name="company" class="input-medium" required>
-                            <div ng-show="form.company.$dirty && form.company.$invalid">This field is required</div>
+                            <input type="text" ng-model="customer" name="customer" class="input-medium" required>
+                            <div ng-show="form.customer.$dirty && form.customer.$invalid">This field is required</div>
                         </td>
                         <td>City</td>
                         <td>
@@ -287,7 +287,7 @@ function FP_getObjectByID(id,o) {//v1.0
                                 <div ng-show="studentNameForm.studentName.$dirty && studentNameForm.studentName.$invalid">This field is required</div>
                             </td>
                             <td ng-form="emailForm">
-                                <input type="email" ng-model="course.studentEmail" name="studentEmail" required-if-course>
+                                <input type="email" ng-model="course.studentEmail" name="studentEmail" class="input-xlarge" required-if-course>
                                 <div ng-show="emailForm.studentEmail.$dirty && emailForm.studentEmail.$invalid">
                                     <span ng-show="emailForm.studentEmail.$error.required">This field is required</span>
                                     <span ng-show="emailForm.studentEmail.$error.email">Please enter a valid e-mail address</span>
@@ -304,7 +304,7 @@ function FP_getObjectByID(id,o) {//v1.0
                             <td colspan="5">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td style="text-align:left;"><b>Total Online Courses</b>: {{totalCourses()}}</td>
+                            <td style="text-align:left;"><b>Total Course Count</b> {{totalCourses()}}</td>
                             <td>{{totalCoursePrice() | price}}</td>
                             <td style="text-align:left;"><b>Online Courses Total Price</b></td>
                         </tr>
@@ -326,7 +326,7 @@ function FP_getObjectByID(id,o) {//v1.0
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td style="text-align:left;"><b>Total Downloads</b>: {{totalDownloads()}}</td>
+                            <td style="text-align:left;"><b>Total Download Count</b> {{totalDownloads()}}</td>
                             <td>{{totalDownloadPrice() | price}}</td>
                             <td><b>Downloads Total Price</b></td>
                         </tr>
@@ -335,7 +335,7 @@ function FP_getObjectByID(id,o) {//v1.0
                 <table class="table">
                     <thead>
                         <tr>
-                            <td style="width:25%;">Send download link to:</td>
+                            <td style="width:25%;">Send download link to</td>
                             <td style="width:30%;">Name</td>
                             <td>Email</td>
                         </tr>
@@ -369,7 +369,7 @@ function FP_getObjectByID(id,o) {//v1.0
             Distributor: {{distributor}}<br>
             PO #: {{po}}<br>
             Order Placed By: {{orderPlacedBy}}<br>
-            Company: {{company}}<br>
+            Customer: {{customer}}<br>
             City: {{city}}<br>
             State/Province: {{state}}<br><br>
             Courses:
@@ -396,11 +396,12 @@ function FP_getObjectByID(id,o) {//v1.0
         <script src="scripts/vendor/date.js"></script>
         <script src="scripts/vendor/if.js"></script>
         <script src="scripts/main.js"></script>
+        <script>angular.bootstrap(document, ['bedrock']);</script>
 
 <!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
 
 <p align="center"><!-- <font face="Trebuchet MS"><a href="../privacy.htm">Privacy 
-Policy</a> - </font> --> <font face="Trebuchet MS" size="2">Copyright � 2013 Bedrock 
+Policy</a> - </font> --> <font face="Trebuchet MS" size="2">Copyright &copy; 2013 Bedrock 
 Learning, Inc.</font></p>
 
 </td></tr><!--msnavigation--></table></body>
