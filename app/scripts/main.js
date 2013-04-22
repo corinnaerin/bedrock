@@ -57,16 +57,15 @@ angular.module('bedrockServices', ['ngResource', 'ui']).
 
 angular.module('bedrock', ['bedrockServices']);
 
-function BedrockOrderCtrl($scope, Courses, Downloads) {
+function BedrockOrderCtrl($scope, $http, Courses, Downloads) {
     $scope.courseOptions = Courses.query();
     $scope.maxCourses = 50;
     $scope.minCourses = 1;
     
-    var emptyCourse = {course: '', company: '', city: '', state: ''};
     $scope.courses = [];
     
     $scope.addCourse = function() {
-        $scope.courses.push(jQuery.extend({}, emptyCourse));
+        $scope.courses.push({});
     };
     
     //Load an initial 6 empty courses
@@ -115,4 +114,18 @@ function BedrockOrderCtrl($scope, Courses, Downloads) {
         }
         return total;
     };
+    
+    $scope.submitOrder = function () {
+        $scope.response = "";
+        
+        $scope.message = $('#messageDiv').html();
+        
+        $http.post('submitOrder.php', $scope.message)
+        .success(function(response) {
+            $scope.response = response;
+        })
+        .error(function(response) {
+            $scope.response = response || "An unknown error occurred.";
+        });
+    }
 }
