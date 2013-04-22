@@ -5,6 +5,26 @@ thead td {
     font-weight: bold;
 }
 
+td {
+    vertical-align: top;
+}
+
 #headerInfo * td {
     padding: 3px;
+}
+
+input:focus.ng-invalid,
+textarea:focus.ng-invalid,
+select:focus.ng-invalid {
+  color: #b94a48;
+  border-color: #ee5f5b;
+}
+
+input:focus:focus.ng-invalid,
+textarea:focus:focus.ng-invalid,
+select:focus:focus.ng-invalid {
+  border-color: #e9322d;
+  -webkit-box-shadow: 0 0 6px #f8b9b7;
+     -moz-box-shadow: 0 0 6px #f8b9b7;
+          box-shadow: 0 0 6px #f8b9b7;
 }

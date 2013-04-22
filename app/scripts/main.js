@@ -21,6 +21,38 @@ angular.module('bedrockServices', ['ngResource', 'ui']).
           allowClear: true,
           placeholder: 'Choose'
        }
+    })
+    .directive('requiredIfCourse', function() {
+        return {
+            require: 'ngModel',
+            link: function($scope, element, attrs, ctrl) {
+                ctrl.$parsers.unshift(function(viewValue) {
+                    if (viewValue.length > 0 || !$scope.course.course) {
+                        ctrl.$setValidity('required', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('required', false);
+                        return undefined;
+                    }
+                });
+            }
+        }
+    })
+    .directive('requiredIfDownloads', function() {
+        return {
+            require: 'ngModel',
+            link: function($scope, element, attrs, ctrl) {
+                ctrl.$parsers.unshift(function(viewValue) {
+                    if (viewValue.length > 0 || $scope.totalDownloads() === 0) {
+                        ctrl.$setValidity('required', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('required', false);
+                        return undefined;
+                    }
+                });
+            }
+        }
     });
 
 angular.module('bedrock', ['bedrockServices']);
