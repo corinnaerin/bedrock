@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bedrockServices', ['ngResource']).
+angular.module('bedrockServices', ['ngResource', 'ui']).
     factory('Courses', function($resource){
         return $resource('courses.json', {}, {
             query: {method:'GET', isArray:true}
@@ -15,7 +15,13 @@ angular.module('bedrockServices', ['ngResource']).
         return function(input) {
             return typeof input == "number" ? '$' + input : '$0';
         }
-});
+    })
+    .value('ui.config', {
+       select2: {
+          allowClear: true,
+          placeholder: 'Choose'
+       }
+    });
 
 angular.module('bedrock', ['bedrockServices']);
 
@@ -27,23 +33,33 @@ function BedrockOrderCtrl($scope, Courses, Downloads) {
     var emptyCourse = {course: '', company: '', city: '', state: ''};
     $scope.courses = [];
     
-    //Load an initial 6 empty courses
-    for(var i=0;i<6;i++) {
-        $scope.courses.push(jQuery.extend({}, emptyCourse));
-    }
-    
     $scope.addCourse = function() {
         $scope.courses.push(jQuery.extend({}, emptyCourse));
     };
+    
+    //Load an initial 6 empty courses
+    for(var i=0;i<6;i++) {
+        $scope.addCourse();
+    }
     
     $scope.removeCourse = function(index) {
         $scope.courses.splice(index, 1);
     };
     
+    $scope.totalCourses = function() {
+        var total = 0;
+        for(var i=0;i<$scope.courses.length;i++) {
+            if ($scope.courses[i].course) {
+                total++;
+            }
+        }
+        return total;
+    }
+    
     $scope.totalCoursePrice = function() {
         var total = 0;
         for(var i=0;i<$scope.courses.length;i++) {
-            total += $scope.courses[i].course.price || 0;
+            total += $scope.courses[i].course ? $scope.courses[i].course.price : 0;
         }
         return total;
     };
@@ -68,9 +84,3 @@ function BedrockOrderCtrl($scope, Courses, Downloads) {
         return total;
     };
 }
-
-(function() {
-    if(!Modernizr.inputtypes.date) {
-        $('#date').datepicker();
-    }
-}());
